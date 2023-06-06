@@ -1,0 +1,8 @@
+Flask
+flask-login
+flask-socketio
+Flask-WTF
+python-dotenv
+argon2-cffi
+gunicorn
+eventlet==0.30.2

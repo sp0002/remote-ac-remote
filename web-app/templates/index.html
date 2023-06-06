@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote remote control</title>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src = {{url_for('static', filename='index.js')}}></script>
+    <!-- typeface from keshikan.net/fonts-e.html -->
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+</head>
+<body>
+    <h1>My remote remote control</h1>
+    <br/>
+
+    <div><span class="segment" id="onoff"><p>{{ state[onoff] }}</p></span></div>
+    <div><span class="segment" id="temp"><p>{{ state[temp] }}</p></span></div>
+    <div id="controls">
+        <div id="button_onoff_con">
+            <button id="button_onoff" onclick="function_onoff()">
+                <svg width=10vw height=10vw viewBox="0 0 50.00005 50.00005" version="1.1"
+                    id="button_onoff_svg" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                    <path class="button_onoff" id="path4534-4" style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.28175;stroke-dasharray:none;stroke-opacity:1" d="m 3.9965669,10.661125 a 1.5107569,1.5122426 0 0 0 -0.2250561,-0.01649 1.5107569,1.5122426 0 0 0 -1.0728831,0.449223 l -0.00102,-1.91e-4 A 24.968712,25.031406 45 0 0 -4.6738243,24.57097 24.968712,25.031406 45 0 0 15.211678,53.754161 24.968712,25.031406 45 0 0 44.444829,33.795412 24.968712,25.031406 45 0 0 42.549534,18.577826 l -0.02234,-0.0042 A 1.5107569,1.5122426 0 0 0 41.142012,17.66278 1.5107569,1.5122426 0 0 0 40.070531,18.110163 22.971215,23.028893 44.999997 0 1 42.480201,33.426452 22.971215,23.028893 44.999997 0 1 15.585561,51.788605 22.971215,23.028893 44.999997 0 1 -2.7092,24.939925 22.971215,23.028893 44.999997 0 1 5.1688763,11.55777 l -0.012184,-0.0023 A 1.5107569,1.5122426 0 0 0 3.9965669,10.661125 Z"
+                    transform="matrix(0.98283475,-0.18448808,0.1869522,0.98236901,0,0)" />
+                    <rect class="button_onoff" style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:23.0863;stroke-dasharray:none;stroke-opacity:1" id="rect19726" width="2.3499999" height="29.866667" x="23.825001" y="0" rx="1.275" ry="1.275" />
+                </svg>
+            </button>
+        </div>
+        <div id="button_temp_con">
+            <button id="button_temp_up" onclick="function_temp_up()">↑</button>
+            <button id="button_temp_down" onclick="function_temp_down()">↓</button>
+        </div>
+    </div>
+
+    <br/>
+    <p><a href={{ url_for('logout') }}>Logout</a></p>
+</body>
+</html>

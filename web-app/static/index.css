@@ -1,0 +1,56 @@
+html, body {
+  margin: 0;
+  padding: 10px;
+  background-color: #c5c5c5;
+  height: 100%;
+}
+
+p, h1 {
+    margin: 0px;
+}
+
+@font-face {
+  font-family: Segment;
+  src: url(DSEG14Classic-Regular.woff2);
+}
+
+.segment {
+    font-family: Segment;
+}
+
+#onoff {
+    font-size: 50px;
+}
+
+#temperature {
+    font-size: 42px;
+}
+
+#controls {
+    display: flex;
+}
+
+#button_onoff_con {
+    flex-grow: 0;
+}
+
+#button_onoff {
+    height: 11vw;
+    width: 11vw;
+}
+
+#button_temp_con {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    height: 11vw;
+    width: 11vw;
+}
+
+#button_temp_up {
+    flex-grow: 1;
+}
+
+#button_temp_down {
+    flex-grow: 1;
+}
