@@ -22,7 +22,7 @@ p, h1 {
     font-size: 50px;
 }
 
-#temperature {
+#temp {
     font-size: 42px;
 }
 
@@ -35,16 +35,16 @@ p, h1 {
 }
 
 #button_onoff {
-    height: 11vw;
-    width: 11vw;
+    height: 21vw;
+    width: 21vw;
 }
 
 #button_temp_con {
     display: flex;
     flex-direction: column;
     flex-grow: 0;
-    height: 11vw;
-    width: 11vw;
+    height: 21vw;
+    width: 21vw;
 }
 
 #button_temp_up {

@@ -1,7 +1,7 @@
 import os
 
-from flask import Flask, render_template, redirect, url_for, flash, g, request
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template, redirect, url_for, flash, request
+from flask_socketio import SocketIO, emit, disconnect
 from flask_login import LoginManager, current_user, login_user, logout_user, UserMixin
 
 from flask_wtf import FlaskForm
@@ -14,6 +14,7 @@ from argon2 import PasswordHasher, exceptions
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+# socketio = SocketIO(app, logger=True, engineio_logger=True)  # For debugging.
 app.secret_key = os.urandom(24)
 
 login_manager = LoginManager()
@@ -75,7 +76,6 @@ def login():
         return redirect(url_for("index"))
     form = LoginForm()
     if form.validate_on_submit():
-        return redirect(url_for("index"))
         # Verify password hash first.
         # This is so that someone who puts in the wrong username will have the same delay in the response from the server.
         try:
@@ -109,12 +109,13 @@ def token_enter():
 
 @socketio.on("connect")
 def connect_handler():
-    if current_user.is_authenticated:')
+    if current_user.is_authenticated:
         emit("remote", get_ir_code(), broadcast=False)
         for i in state:
             emit("web", (i, state[i]), broadcast=False)
     else:
         emit("hi", "403", broadcast=False)
+        disconnect()
 
 
 @socketio.on("change")
@@ -138,11 +139,8 @@ def handle_change(change):
             last_on = (state["onoff"] == "ON")
             emit("web", ("temp", state["temp"]), broadcast=True)
         emit("remote", get_ir_code(), broadcast=True)
-
-
-@socketio.on("disconnect")
-def disconnect():
-    pass
+    else:
+        disconnect()
 
 
 if __name__ == "__main__":
