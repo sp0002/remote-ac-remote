@@ -26,8 +26,8 @@ ph = PasswordHasher(time_cost=3, memory_cost=1048576, parallelism=4)
 
 
 state = {
-    "onoff": os.environ.get("DEFAULT_ON_OFF"),
-    "temp": int(os.environ.get("DEFAULT_TEMP")),
+    "onoff": os.environ.get("RR_DEFAULT_ON_OFF"),
+    "temp": int(os.environ.get("RR_DEFAULT_TEMP")),
 }
 
 last_on = False
@@ -79,11 +79,11 @@ def login():
         # Verify password hash first.
         # This is so that someone who puts in the wrong username will have the same delay in the response from the server.
         try:
-            ph.verify(os.environ.get("PASS"), form.password.data)  # Password123
+            ph.verify(os.environ.get("RR_PASS"), form.password.data)  # Password123
         except exceptions.VerifyMismatchError or exceptions.VerificationError or exceptions.InvalidHash:
             pass
         else:
-            if form.username.data == os.environ.get("USER"):
+            if form.username.data == os.environ.get("RR_USER"):
                 login_user(User(u_id=0))
                 return redirect(url_for("index"))
         flash("Login information is incomplete or incorrect.")
@@ -102,7 +102,7 @@ def logout():
 @app.route("/token_enter", methods=["POST"])
 def token_enter():
     token = request.form.get("token", None)
-    if token == os.environ.get("MY_TOKEN"):
+    if token == os.environ.get("RR_TOKEN"):
         login_user(User(u_id=0))
     return "OK", 200
 
