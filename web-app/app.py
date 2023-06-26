@@ -35,16 +35,15 @@ last_on = False
 
 def get_ir_code():
     if state["onoff"] == "OFF":
-        return "0x88C0051"
+        return "0xC005"
     else:
-        ir_code = "100010000000"
+        ir_code = ""
         if last_on:
             ir_code += "1000"  # Code for when remote control is already on "On".
-        else:
-            ir_code += "0000"
         temp_to_code = f"{state['temp']-15:b}"
         ir_code += "0"*(4-len(temp_to_code)) + temp_to_code
         ir_code += "0100"  # Fan speed 5.
+        print(ir_code)
         return f"{hex(int(ir_code, 2))}"
 
 

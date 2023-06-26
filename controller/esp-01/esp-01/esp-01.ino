@@ -30,7 +30,7 @@ void ioClientEvent(socketIOmessageType_t type, uint8_t * payload, size_t length)
       String data = (char *)payload;
       if (data.startsWith("[\"remote\",\"")){
         data = data.substring(11);
-        data = data.substring(0, 9);
+        data = data.substring(0, data.length()-2);
         Serial.println(data);
       }
       break;
