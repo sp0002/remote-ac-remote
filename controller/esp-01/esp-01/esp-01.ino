@@ -20,7 +20,7 @@ bool reconnect = false;
 void ioClientEvent(socketIOmessageType_t type, uint8_t * payload, size_t length) {
   switch(type) {
     case sIOtype_DISCONNECT:
-      Serial.printf("Disconnected!");
+      Serial.println("Disconnected!");
       reconnect = true;
       break;
     case sIOtype_CONNECT:
@@ -91,7 +91,7 @@ void connect_token(){
 
 void setup() {
   Serial.begin(9600);
-  delay(6000);  // Allows time for serial monitor to connect to the ESP8266
+  delay(6000);  // Allows some time for ESP8266 and Arduino to connect.
 
   Serial.setDebugOutput(false);
 
